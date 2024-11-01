@@ -3,15 +3,12 @@ package valueObjects
 import "errors"
 
 type NameRoom struct {
-	value string
+	name string
 }
 
-func NewNameRoom(value string) (NameRoom, error) {
-	if len(value) == 0 {
-		return NameRoom{}, errors.New("el nombre de la sala no puede estar vacio")
+func NewNameRoom(nameRoom string) (*NameRoom, error) {
+	if nameRoom == "" {
+		return nil, errors.New("no se puede crear una sala sin nombre")
 	}
-	if len(value) > 15 {
-		return NameRoom{}, errors.New("el nombre de la sala debe tener menos de 15 caracteres")
-	}
-	return NameRoom{value: value}, nil
+	return &NameRoom{name: nameRoom}, nil
 }
